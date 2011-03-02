@@ -1,0 +1,30 @@
+<RCC>
+    <qresource prefix="/icons">
+        <file>images/zoomout.png</file>
+        <file>images/editcopy.png</file>
+        <file>images/editcut.png</file>
+        <file>images/editpaste.png</file>
+        <file>images/editredo.png</file>
+        <file>images/editundo.png</file>
+        <file alias="close">images/exit.png</file>
+        <file>images/exportpdf.png</file>
+        <file>images/filenew.png</file>
+        <file>images/fileopen.png</file>
+        <file>images/fileprint.png</file>
+        <file alias="settings">images/filesave.png</file>
+        <file>images/GraySmall.png</file>
+        <file alias="grid">images/GreenSmall.png</file>
+        <file>images/RedSmal.png</file>
+        <file>images/test.png</file>
+        <file>images/textbold.png</file>
+        <file>images/textcenter.png</file>
+        <file>images/textitalic.png</file>
+        <file alias="main">images/textjustify.png</file>
+        <file>images/textleft.png</file>
+        <file>images/textright.png</file>
+        <file>images/textunder.png</file>
+        <file>images/vfileopen.png</file>
+        <file>images/YelowSmall.png</file>
+        <file>images/zoomin.png</file>
+    </qresource>
+</RCC>
