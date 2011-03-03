@@ -111,10 +111,11 @@ void GridWindow::on_actionMove_to_left_triggered()
  */
 void GridWindow::moveEvent ( QMoveEvent * event )
 {
+    Q_UNUSED(event);
     if(settings_array)
     {
-        settings_array->setValue("x", event->pos().x());
-        settings_array->setValue("y", event->pos().y());
+        settings_array->setValue("x", geometry().x());
+        settings_array->setValue("y", geometry().y());
     }
 }
 /*! key pressed
@@ -174,8 +175,10 @@ void GridWindow::on_change()
 			setWindowState(windowState() | Qt::WindowFullScreen);
 		else
 			setWindowState(windowState() & ~Qt::WindowFullScreen);
-		move(settings_array->value("x",0).toInt(), settings_array->value("y", 0).toInt());
-		resize(settings_array->value("w", 800).toInt(), settings_array->value("h", 600).toInt());
+                //move(settings_array->value("x",0).toInt(), settings_array->value("y", 0).toInt());
+                //resize(settings_array->value("w", 800).toInt(), settings_array->value("h", 600).toInt());
+                setGeometry(settings_array->value("x",0).toInt(), settings_array->value("y", 0).toInt(),
+                            settings_array->value("w", 800).toInt(), settings_array->value("h", 600).toInt());
 		w = settings_array->value("horizontal", 20).toInt();
 		h = settings_array->value("vertical", 34).toInt();
 		between = settings_array->value("between", 0).toInt();

@@ -3,6 +3,7 @@
 #include "gridwindow.h"
 #include "about.h"
 #include <QEvent>
+#include <QMessageBox>
 /*! constructor
  * \params
  * - parent - parent object
@@ -29,7 +30,8 @@ GridIcon::GridIcon(QWidget *parent) :
 	ppTopMenu.addAction(close);
 	setContextMenu(&ppTopMenu);
 	setToolTip(tr("Devel tools: grid"));
-	//defaults
+        connect(this, SIGNAL(activated ( QSystemTrayIcon::ActivationReason)),
+                this, SLOT(on_activate ( QSystemTrayIcon::ActivationReason)));
 }
 /*! destructor
  * \params no
@@ -88,11 +90,10 @@ void GridIcon::on_grid()
  * \params no
  * \return no
  */
-bool GridIcon::event ( QEvent * e )
+void GridIcon::on_activate( QSystemTrayIcon::ActivationReason reason )
 {
-    if(e->type() == QEvent::MouseButtonPress)
+    if(reason == QSystemTrayIcon::Trigger)
     {
         on_grid();
     }
-	return true;
 }
