@@ -61,17 +61,17 @@ void SettingsWindow::on_cancel_clicked()
  */
 bool SettingsWindow::settings(QSettings&settings_array)
 {
-	ui->horizontal->setValue(settings_array.value("horizontal").toInt());
-	ui->vertical->setValue(settings_array.value("vertical").toInt());
-	ui->transparenty->setValue(settings_array.value("transparenty").toDouble());
-	ui->between->setValue(settings_array.value("between").toInt());
-
-        ui->x->setValue(settings_array.value("x").toInt());
-        ui->y->setValue(settings_array.value("y").toInt());
-        ui->w->setValue(settings_array.value("w").toInt());
-        ui->h->setValue(settings_array.value("h").toInt());
-        this->settings_array = &settings_array;
-        show();
+	ui->horizontal->setValue(settings_array.value("horizontal", 19).toInt());
+	ui->vertical->setValue(settings_array.value("vertical", 34).toInt());
+	ui->transparenty->setValue(settings_array.value("transparenty", 0.3).toDouble()*100);
+	ui->between->setValue(settings_array.value("between", 0).toInt());
+	ui->x->setValue(settings_array.value("x", 0).toInt());
+	ui->y->setValue(settings_array.value("y", 0).toInt());
+	ui->w->setValue(settings_array.value("w", 800).toInt());
+	ui->h->setValue(settings_array.value("h", 600).toInt());
+	ui->full_screen->setChecked(settings_array.value("full_screen", false).toBool());
+	this->settings_array = &settings_array;
+	show();
 	return true;
 }
 /*! window can't be closed!
@@ -81,7 +81,8 @@ bool SettingsWindow::settings(QSettings&settings_array)
  */
 void SettingsWindow::closeEvent(QCloseEvent *event)
  {
-	 event->ignore();
+	hide();
+	event->ignore();
  }
 /*! change horizontal value
  * \params
@@ -130,12 +131,13 @@ void SettingsWindow::on_change()
 		settings_array->setValue("horizontal", ui->horizontal->value());
 		settings_array->setValue("vertical", ui->vertical->value());
 		settings_array->setValue("between", ui->between->value());
-		settings_array->setValue("transparenty", ui->transparenty->value());
-                settings_array->setValue("x", ui->x->value());
-                settings_array->setValue("y", ui->y->value());
-                settings_array->setValue("w", ui->w->value());
-                settings_array->setValue("h", ui->h->value());
-        }
+		settings_array->setValue("transparenty", ((double)ui->transparenty->value()/100.0));
+		settings_array->setValue("x", ui->x->value());
+		settings_array->setValue("y", ui->y->value());
+		settings_array->setValue("w", ui->w->value());
+		settings_array->setValue("h", ui->h->value());
+		settings_array->setValue("full_screen", ui->full_screen->isChecked());
+	}
 	emit s_change();
 }
 /*! change x value
@@ -169,4 +171,14 @@ void SettingsWindow::on_w_valueChanged(int )
 void SettingsWindow::on_h_valueChanged(int )
 {
         on_change();
+}
+
+void SettingsWindow::on_transparenty_valueChanged(int )
+{
+	on_change();
+}
+
+void SettingsWindow::on_full_screen_stateChanged(int )
+{
+	on_change();
 }

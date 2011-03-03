@@ -1,6 +1,7 @@
 #include "gridicon.h"
 #include "settingswindow.h"
 #include "gridwindow.h"
+#include "about.h"
 #include <QEvent>
 /*! constructor
  * \params
@@ -19,8 +20,11 @@ GridIcon::GridIcon(QWidget *parent) :
 	QAction *settings = new QAction(QIcon(":/icons/settings"), tr("Settings"), this);
 	connect(settings, SIGNAL(triggered()), this, SLOT(on_settings()));
 	ppTopMenu.addAction(settings);
+	QAction *help = new QAction(QIcon(":/icons/help"), tr("About"), this);
+	connect(help, SIGNAL(triggered()), this, SLOT(on_help()));
+	ppTopMenu.addAction(help);
 	ppTopMenu.addSeparator();
-	QAction *close = new QAction(QIcon(":/icons/close"), tr("Exit"), this);
+        QAction *close = new QAction(QIcon(":/icons/close"), tr("Exit"), this);
 	connect(close, SIGNAL(triggered()), this, SLOT(on_close()));
 	ppTopMenu.addAction(close);
 	setContextMenu(&ppTopMenu);
@@ -50,6 +54,15 @@ void GridIcon::on_close()
 void GridIcon::on_change()
 {
         emit s_change();
+}
+/*! user click on about
+ * \params no
+ * \return no
+ */
+void GridIcon::on_help()
+{
+	static About window;
+	window.show();
 }
 /*! user click on settings
  * \params no
@@ -81,4 +94,5 @@ bool GridIcon::event ( QEvent * e )
     {
         on_grid();
     }
+	return true;
 }

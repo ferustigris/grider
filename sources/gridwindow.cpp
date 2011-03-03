@@ -18,7 +18,7 @@ GridWindow::GridWindow(QWidget *parent) :
 	h = 19;
 	between = 0;
 	trasp = 0.3;
-	setWindowFlags(Qt::Window | Qt::FramelessWindowHint | Qt::WindowTitleHint | Qt::WindowStaysOnTopHint);
+	setWindowFlags(Qt::Window | Qt::WindowTitleHint | Qt::WindowStaysOnTopHint | Qt::WindowCloseButtonHint);
         //grabKeyboard();
 }
 /*! destructor
@@ -53,13 +53,17 @@ void GridWindow::paintEvent ( QPaintEvent * event )
 {
     Q_UNUSED(event);
 	QPainter painter(this);
-	for(int i = 0; i < 4000; i += w)
+	if(w < 1)w = 2;
+	//painter.setPen(QColor(0,255,234));
+	painter.setPen(Qt::black);
+	for(int i = 0; i < 4000; i += w-1)
 	{
 		painter.drawLine(i, 0, i, 4000);
 		i += between;
 		painter.drawLine(i, 0, i, 4000);
 	}
-	for(int i = 0; i < 4000; i += h)
+	if(h < 1)h = 1;
+	for(int i = 0; i < 4000; i += h-1)
 	{
 		painter.drawLine(0, i, 4000, i);
 		i += between;
@@ -92,7 +96,8 @@ void GridWindow::grid (QSettings&settings)
  */
 void GridWindow::closeEvent(QCloseEvent *event)
  {
-	 event->ignore();
+	hide();
+	event->ignore();
  }
 
 void GridWindow::on_actionMove_to_left_triggered()
@@ -165,12 +170,16 @@ void GridWindow::on_change()
 {
     if(settings_array)
     {
-        move(settings_array->value("x").toInt(), settings_array->value("y").toInt());
-        resize(settings_array->value("w").toInt(), settings_array->value("h").toInt());
-        w = settings_array->value("horizontal").toInt();
-        h = settings_array->value("vertical").toInt();
-        between = settings_array->value("between").toInt();
-        trasp = settings_array->value("transparenty").toDouble();
+		if(settings_array->value("full_screen",false).toBool())
+			setWindowState(windowState() | Qt::WindowFullScreen);
+		else
+			setWindowState(windowState() & ~Qt::WindowFullScreen);
+		move(settings_array->value("x",0).toInt(), settings_array->value("y", 0).toInt());
+		resize(settings_array->value("w", 800).toInt(), settings_array->value("h", 600).toInt());
+		w = settings_array->value("horizontal", 20).toInt();
+		h = settings_array->value("vertical", 34).toInt();
+		between = settings_array->value("between", 0).toInt();
+		trasp = settings_array->value("transparenty", 0.3).toDouble();
         setWindowOpacity(trasp);
         repaint();
     }
