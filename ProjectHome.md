@@ -1,0 +1,5 @@
+Transporent grid on desktop help you positioning your widgets.
+
+<table><tr><td><a href='https://picasaweb.google.com/lh/photo/8Ep9gJiwwinnVr5x9ZvcedMTjNZETYmyPJy0liipFm0?feat=embedwebsite'><img src='https://lh5.googleusercontent.com/-kq5eQGyJ4DQ/UT4lhVoxBeI/AAAAAAAAVao/j26k-6I5TPw/s400/screen1.png' height='284' width='400' /></a></td></tr><tr><td>From <a href='https://picasaweb.google.com/108087019739758069213/Grider?authuser=0&feat=embedwebsite'>Портфолио: Grider</a></td></tr></table>
+
+<table><tr><td><a href='https://picasaweb.google.com/lh/photo/rf9sbL97JNdQebVFFZLKVdMTjNZETYmyPJy0liipFm0?feat=embedwebsite'><img src='https://lh4.googleusercontent.com/-mWI9OunL_l0/UT4lhf40apI/AAAAAAAAVak/RTcdEw8cOWo/s400/screen2.png' height='400' width='276' /></a></td></tr><tr><td>From <a href='https://picasaweb.google.com/108087019739758069213/Grider?authuser=0&feat=embedwebsite'>Портфолио: Grider</a></td></tr></table>
